@@ -1,4 +1,4 @@
-import { Box, List, ListItem, ListItemText, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import styled from 'styled-components'
 import ct from 'countries-and-timezones'
 import { useEffect, useState } from 'react'
@@ -40,7 +40,6 @@ const Home = () => {
 
   const updateZones = () => {
     const allTimeZoneNames = moment.tz.names()
-    console.log(ct.getTimezonesForCountry('US'))
 
     const places = []
 
@@ -85,10 +84,6 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    findDrink(placesAt5)
-  }, [placesAt5])
-
-  const findDrink = () => {
     let place = placesAt5[_.random(0, placesAt5.length - 1)]
     let drink = null
 
@@ -101,7 +96,7 @@ const Home = () => {
 
     setDrinkOfChoice(drink)
     setPlaceOfChoice(place)
-  }
+  }, [placesAt5])
 
   return (
     <HomeBox>
