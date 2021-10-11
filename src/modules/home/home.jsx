@@ -34,7 +34,7 @@ const DataBox = styled(Box)`
  */
 
 const Home = () => {
-  const [currentTime, setCurrentTime] = useState(new Date())
+  const [fiveTime, setFiveTime] = useState(new Date())
   const [placesAt5, setPlacesAt5] = useState([])
   const [placeOfChoice, setPlaceOfChoice] = useState()
   const [drinkOfChoice, setDrinkOfChoice] = useState()
@@ -67,12 +67,13 @@ const Home = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currTime = new Date()
+      const time = new Date()
+      time.setHours(17)
 
-      if (currTime.getMinutes() === 0 && currTime.getSeconds() === 0) {
+      if (time.getMinutes() === 0 && time.getSeconds() === 0) {
         updateZones()
       }
-      setCurrentTime(currTime)
+      setFiveTime(time)
     }, 900) // wasn't always updating the time every second when set at 1000
 
     return () => {
@@ -108,33 +109,19 @@ const Home = () => {
       <Typography variant='h2' sx={{ mb: 5 }}>
         It's 5 O'Clock Somewhere
       </Typography>
-      <Typography component='div' variant='h4' sx={{ mb: 5, color: 'text.secondary' }}>
-        It's currently{' '}
-        <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, color: 'secondary.main', fontWeight: '600' }}>
-          {currentTime.toLocaleString()}
-        </Typography>{' '}
-        in{' '}
-        <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
-          {placeOfChoice.place}, {placeOfChoice.country}
+      {placeOfChoice && (
+        <Typography component='div' variant='h4' sx={{ mb: 5, color: 'text.secondary' }}>
+          It's currently{' '}
+          <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, color: 'secondary.main', fontWeight: '600' }}>
+            {fiveTime.toLocaleString()}
+          </Typography>{' '}
+          in{' '}
+          <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
+            {placeOfChoice.place}, {placeOfChoice.country}
+          </Typography>
         </Typography>
-      </Typography>
+      )}
       <DataBox>
-        {/* <List>
-          {placesAt5.map(place => {
-            return (
-              <ListItem key={place.zoneName}>
-                <ListItemText>
-                  {place.place}, {place.country}
-                </ListItemText>
-              </ListItem>
-            )
-          })}
-        </List> */}
-        {placeOfChoice && (
-          <Box>
-            <Typography></Typography>
-          </Box>
-        )}
         {drinkOfChoice && (
           <Box sx={{ ml: 10 }}>
             <Typography>{drinkOfChoice.name}</Typography>
