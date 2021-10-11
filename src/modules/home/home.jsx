@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import ct from 'countries-and-timezones'
 import { useEffect, useState } from 'react'
 import moment from 'moment-timezone'
-import 'react-clock/dist/Clock.css'
 import _ from 'lodash'
 import drinksData from './drinksData'
 
