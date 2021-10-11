@@ -57,6 +57,7 @@ const Home = () => {
 
       if (tempFiveTime.getHours !== 17) {
         tempFiveTime.setHours(17)
+        updateZones()
       }
       setCurrentTime(currTime)
       setFiveTime(tempFiveTime)
