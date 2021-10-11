@@ -107,7 +107,7 @@ const Home = () => {
         <Typography component='div' variant='h4' sx={{ mb: 5, color: 'text.secondary' }}>
           It's currently{' '}
           <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, color: 'secondary.main', fontWeight: '600' }}>
-            {fiveTime.toLocaleString()}
+            {fiveTime.toLocaleTimeString()}
           </Typography>{' '}
           in{' '}
           <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
