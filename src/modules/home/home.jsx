@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Divider, Typography, Card, CardContent, CardMedia } from '@mui/material'
 import styled from 'styled-components'
 import ct from 'countries-and-timezones'
 import { useEffect, useState } from 'react'
@@ -89,18 +89,13 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    let place = placesAt5[_.random(0, placesAt5.length - 1)]
-    let drink = null
-
-    placesAt5.forEach(p => {
-      if (drinksData.some(drink => drink.place === p.place)) {
-        place = p
-        drink = drinksData.find(drink => drink.place === p.place)
-      }
-    })
-
-    setDrinkOfChoice(drink)
-    setPlaceOfChoice(place)
+    if (placesAt5.length > 0) {
+      const place = placesAt5[_.random(0, placesAt5.length - 1)]
+      const drinks = drinksData.filter(drink => drink.zoneName === place.zoneName)
+      console.log(place.zoneName) // helps with creating new drink data for zones
+      drinks.length > 0 ? setDrinkOfChoice(drinks[_.random(0, drinks.length - 1)]) : setDrinkOfChoice(null)
+      setPlaceOfChoice(place)
+    }
   }, [placesAt5])
 
   return (
@@ -115,18 +110,49 @@ const Home = () => {
             {fiveTime.toLocaleTimeString()}
           </Typography>{' '}
           in{' '}
-          <Typography component='span' variant='h5' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
-            {placeOfChoice.place}, {placeOfChoice.country}
-          </Typography>
+          {drinkOfChoice ? (
+            <Typography component='span' variant='h5' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
+              {drinkOfChoice.place}, {drinkOfChoice.country}
+            </Typography>
+          ) : (
+            <Typography component='span' variant='h5' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
+              {placeOfChoice.place}, {placeOfChoice.country}
+            </Typography>
+          )}
         </Typography>
       )}
-      <DataBox>
-        {drinkOfChoice && (
-          <Box sx={{ ml: 10 }}>
-            <Typography>{drinkOfChoice.name}</Typography>
-          </Box>
-        )}
-      </DataBox>
+
+      {drinkOfChoice && (
+        <>
+          <Divider sx={{ width: '80%' }} />
+          <DataBox>
+            <Box>
+              <Typography variant='h5' sx={{ mb: 5, mt: 5 }}>
+                Enjoy a
+              </Typography>
+              <Card sx={{ maxWidth: 350 }}>
+                {/* 
+              // TODO: Uncomment and use once we implement the drink's details page
+              <CardActionArea> 
+              
+              */}
+                <CardMedia component='img' height='240' image={drinkOfChoice.img} alt='green iguana' />
+                <CardContent sx={{ backgroundColor: 'white', color: 'black' }}>
+                  <Typography variant='h5' component='div' fontWeight='600'>
+                    {drinkOfChoice.name}
+                  </Typography>
+                  {drinkOfChoice.funFact && (
+                    <Typography variant='body2' sx={{ mt: 1 }}>
+                      {drinkOfChoice.funFact}
+                    </Typography>
+                  )}
+                </CardContent>
+                {/* </CardActionArea> */}
+              </Card>
+            </Box>
+          </DataBox>
+        </>
+      )}
     </HomeBox>
   )
 }
