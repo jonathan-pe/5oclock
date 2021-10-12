@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import GlobalStyle from './app/globalStyles'
 import '@fontsource/poppins'
 import Router from './app/router/router'
+import NavBar from './app/NavBar'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <GlobalStyle />
         <ThemeProvider theme={createTheme(theme)}>
           <CssBaseline />
+          <NavBar></NavBar>
           <Router />
         </ThemeProvider>
       </BrowserRouter>

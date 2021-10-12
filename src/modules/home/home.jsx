@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 import drinksData from './drinksData'
-import NavBar from '../../app/NavBar'
 
 const HomeBox = styled(Box)`
   display: flex;
@@ -100,33 +99,30 @@ const Home = () => {
   }, [placesAt5])
 
   return (
-    <>
-      <NavBar></NavBar>
-      <HomeBox>
-        <Typography variant='h2' sx={{ mb: 5 }}>
-          It's 5 O'Clock Somewhere
-        </Typography>
-        {placeOfChoice && (
-          <Typography component='div' variant='h4' sx={{ mb: 5, color: 'text.secondary' }}>
-            It's currently{' '}
-            <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, color: 'secondary.main', fontWeight: '600' }}>
-              {fiveTime.toLocaleTimeString()}
-            </Typography>{' '}
-            in{' '}
-            <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
-              {placeOfChoice.place}, {placeOfChoice.country}
-            </Typography>
+    <HomeBox>
+      <Typography variant='h2' sx={{ mb: 5 }}>
+        It's 5 O'Clock Somewhere
+      </Typography>
+      {placeOfChoice && (
+        <Typography component='div' variant='h4' sx={{ mb: 5, color: 'text.secondary' }}>
+          It's currently{' '}
+          <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, color: 'secondary.main', fontWeight: '600' }}>
+            {fiveTime.toLocaleTimeString()}
+          </Typography>{' '}
+          in{' '}
+          <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
+            {placeOfChoice.place}, {placeOfChoice.country}
           </Typography>
+        </Typography>
+      )}
+      <DataBox>
+        {drinkOfChoice && (
+          <Box sx={{ ml: 10 }}>
+            <Typography>{drinkOfChoice.name}</Typography>
+          </Box>
         )}
-        <DataBox>
-          {drinkOfChoice && (
-            <Box sx={{ ml: 10 }}>
-              <Typography>{drinkOfChoice.name}</Typography>
-            </Box>
-          )}
-        </DataBox>
-      </HomeBox>
-    </>
+      </DataBox>
+    </HomeBox>
   )
 }
 
