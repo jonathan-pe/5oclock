@@ -29,14 +29,19 @@ const WhyPage = () => {
         <strong>drink mindfully and responsibly.</strong>
       </Typography>
       <Typography sx={{ mt: 5 }}>
-        <strong>P.S.:</strong> We are aware of some of the issues that currently plague the site. We're working on
-        narrowing down the locations but currently only have timezone names at our disposal. We will work on any issues
-        that pop up whenever we get to them :) Feel free to create an issue or create any Pull Requests in our{' '}
+        <strong>P.S.:</strong> We are aware of some of the shortcomings of the site. We're currently looking at better
+        ways to display more relevant drinks and locations to you. However, doing this programmatically is difficult at
+        the moment. Most of our data is hardcoded as there aren't really any APIs that consistently keep up with
+        updating worldwide timezone information. Given those timezones, there also aren't any APIs that will tell us
+        which cities/countries/states/provinces/etc. are most populated in those zones, so we have to manually add those
+        ourselves so that we can display a drink and location that actually makes sense to you. If there are drinks or
+        locations missing that you would like to see, or you find any bugs/issues, feel free to create an issue or
+        create any Pull Requests in our{' '}
         <Link href='https://github.com/jonathan-pe/5oclock' color='secondary.main' target='_blank'>
           Github repo
         </Link>
-        . That'll really help us out. In the meantime, feel free to enjoy the features of the site and enjoy your
-        beverage(s)!
+        . That'll really help us out. We will work on any issues that pop up whenever we get to them :) In the meantime,
+        feel free to enjoy the features of the site and enjoy your beverage(s)!
       </Typography>
     </StyledBox>
   )
