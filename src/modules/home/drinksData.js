@@ -2,6 +2,7 @@ import mexicoCityCocktailImg from '../../assets/images/mexicoCityCocktail.jpg'
 import caipirinhaImg from '../../assets/images/caipirinha.jpg'
 import greenlandicCoffeeImg from '../../assets/images/greenlandicCoffee.jpg'
 import screechOVAImg from '../../assets/images/screechOVA.jpg'
+import angryCanadianImg from '../../assets/images/angryCanadian.jpg'
 
 const drinksData = [
   {
@@ -86,7 +87,8 @@ const drinksData = [
     img: screechOVAImg,
     funFact:
       "Celebrate the nation's Canadian and Jamaican roots with this delicious Screech Rum cocktail, made with pineapple juice and ginger beer!",
-    blurb: null,
+    blurb:
+      'Screech is Jamaican-style rum that is the historic result of trade between Newfoundland and Jamaica (Jamaica got salt cod in return)',
     ingredients: {},
   },
   {
@@ -97,6 +99,18 @@ const drinksData = [
     img: screechOVAImg,
     funFact:
       "Celebrate the nation's Canadian and Jamaican roots with this delicious Screech Rum cocktail, made with pineapple juice and ginger beer!",
+    blurb:
+      'Screech is Jamaican-style rum that is the historic result of trade between Newfoundland and Jamaica (Jamaica got salt cod in return)',
+    ingredients: {},
+  },
+  {
+    zoneName: 'America/Miquelon',
+    place: 'Saint Pierre',
+    country: 'Saint Pierre and Miquelon',
+    name: 'Angry Canadian',
+    img: angryCanadianImg,
+    funFact:
+      'The Angry Canadian is a variant of the Old Fashioned, where sugar is replaced with pure maple syrup, and mixed with Canadian rye whiskey.',
     blurb: null,
     ingredients: {},
   },
