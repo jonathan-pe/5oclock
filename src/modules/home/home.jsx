@@ -92,7 +92,9 @@ const Home = () => {
     if (placesAt5.length > 0) {
       const place = placesAt5[_.random(0, placesAt5.length - 1)]
       const drinks = drinksData.filter(drink => drink.zoneName === place.zoneName)
-      console.log(place.zoneName) // helps with creating new drink data for zones
+      // helps with creating new drink data for zones
+      console.log(place.zoneName)
+      console.log(placesAt5)
       drinks.length > 0 ? setDrinkOfChoice(drinks[_.random(0, drinks.length - 1)]) : setDrinkOfChoice(null)
       setPlaceOfChoice(place)
     }

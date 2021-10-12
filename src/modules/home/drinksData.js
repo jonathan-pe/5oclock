@@ -1,5 +1,7 @@
 import mexicoCityCocktailImg from '../../assets/images/mexicoCityCocktail.jpg'
 import caipirinhaImg from '../../assets/images/caipirinha.jpg'
+import greenlandicCoffeeImg from '../../assets/images/greenlandicCoffee.jpg'
+import screechOVAImg from '../../assets/images/screechOVA.jpg'
 
 const drinksData = [
   {
@@ -51,6 +53,50 @@ const drinksData = [
     img: caipirinhaImg,
     funFact:
       'The Caipirinha, the national cocktail of Brazil, blends Cachaça with lime and sugar for a refreshing, sweet and tangy flavor.',
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneName: 'America/Godthab',
+    place: 'Nuuk',
+    country: 'Greenland',
+    name: 'Greenlandic Coffee',
+    img: greenlandicCoffeeImg,
+    funFact:
+      'Greenlandic coffee is mixed with whiskey, Kahlua and Grand Marnier and covered by a heap of whipped cream.',
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneName: 'America/Nuuk',
+    place: 'Nuuk',
+    country: 'Greenland',
+    name: 'Greenlandic Coffee',
+    img: greenlandicCoffeeImg,
+    funFact:
+      'Greenlandic coffee is mixed with whiskey, Kahlua and Grand Marnier and covered by a heap of whipped cream.',
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneName: 'Canada/Newfoundland',
+    place: 'Newfoundland and Labrador',
+    country: 'Canada',
+    name: 'Screech OVA',
+    img: screechOVAImg,
+    funFact:
+      "Celebrate the nation's Canadian and Jamaican roots with this delicious Screech Rum cocktail, made with pineapple juice and ginger beer!",
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneName: 'America/St_Johns',
+    place: 'Newfoundland and Labrador',
+    country: 'Canada',
+    name: 'Screech OVA',
+    img: screechOVAImg,
+    funFact:
+      "Celebrate the nation's Canadian and Jamaican roots with this delicious Screech Rum cocktail, made with pineapple juice and ginger beer!",
     blurb: null,
     ingredients: {},
   },
