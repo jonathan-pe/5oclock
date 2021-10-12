@@ -12,6 +12,10 @@ const HomeBox = styled(Box)`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
 `
 
