@@ -12,6 +12,7 @@ const HomeBox = styled(Box)`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  text-align: center;
 `
 
 const DataBox = styled(Box)`
@@ -100,17 +101,17 @@ const Home = () => {
 
   return (
     <HomeBox>
-      <Typography variant='h2' sx={{ mb: 5 }}>
+      <Typography variant='h3' sx={{ mb: 5 }}>
         It's 5 O'Clock Somewhere
       </Typography>
       {placeOfChoice && (
-        <Typography component='div' variant='h4' sx={{ mb: 5, color: 'text.secondary' }}>
+        <Typography component='div' variant='h5' sx={{ mb: 5, color: 'text.secondary' }}>
           It's currently{' '}
-          <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, color: 'secondary.main', fontWeight: '600' }}>
+          <Typography component='span' variant='h5' sx={{ ml: 1, mr: 1, color: 'secondary.main', fontWeight: '600' }}>
             {fiveTime.toLocaleTimeString()}
           </Typography>{' '}
           in{' '}
-          <Typography component='span' variant='h4' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
+          <Typography component='span' variant='h5' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
             {placeOfChoice.place}, {placeOfChoice.country}
           </Typography>
         </Typography>
