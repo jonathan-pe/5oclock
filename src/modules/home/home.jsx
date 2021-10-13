@@ -38,7 +38,10 @@ const DataBox = styled(Box)`
  */
 
 const Home = () => {
-  const [fiveTime, setFiveTime] = useState(new Date())
+  const initTime = new Date()
+  initTime.setHours(17)
+
+  const [fiveTime, setFiveTime] = useState(initTime)
   const [placesAt5, setPlacesAt5] = useState([])
   const [placeOfChoice, setPlaceOfChoice] = useState()
   const [drinkOfChoice, setDrinkOfChoice] = useState()
@@ -91,7 +94,7 @@ const Home = () => {
   useEffect(() => {
     if (placesAt5.length > 0) {
       const place = placesAt5[_.random(0, placesAt5.length - 1)]
-      const drinks = drinksData.filter(drink => drink.zoneName === place.zoneName)
+      const drinks = drinksData.filter(drink => drink.zoneNames.includes(place.zoneName))
       // helps with creating new drink data for zones
       console.log(place.zoneName)
       console.log(placesAt5)
