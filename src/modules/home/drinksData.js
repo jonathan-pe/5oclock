@@ -9,6 +9,9 @@ import arubaAribaImg from '../../assets/images/arubaAriba.jpg'
 import barbadosSurpriseImg from '../../assets/images/barbadosSurprise.png'
 import rumPunchImg from '../../assets/images/rumPunch.jpg'
 import antiguaSmileImg from '../../assets/images/antiguaSmile.png'
+import volgaBoatmanImg from '../../assets/images/volgaBoatman.jpeg'
+import medovukhaImg from '../../assets/images/medovukha.jpg'
+import passionfruitMojitoImg from '../../assets/images/passionfruitMojito.jpg'
 
 const drinksData = [
   {
@@ -136,6 +139,38 @@ const drinksData = [
     name: 'Antigua Smile',
     img: antiguaSmileImg,
     funFact: 'A tropical drink designed for blissful and relaxind daydreams.',
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneNames: ['Asia/Anadyr', 'Asia/Kamchatka'],
+    place: 'Kamchatka',
+    country: 'Russia',
+    name: 'Volga Boatman',
+    img: volgaBoatmanImg,
+    funFact: 'This drink is named after a Cecil b. De Mille movie which was released in 1926.',
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneNames: ['Asia/Anadyr', 'Asia/Kamchatka'],
+    place: 'Anadyr',
+    country: 'Russia',
+    name: 'Medovukha',
+    img: medovukhaImg,
+    funFact:
+      'In Ancient Russia this “drinkable honey” was considered holy and so it was an integral feature of many festivities.',
+    blurb: null,
+    ingredients: {},
+  },
+
+  {
+    zoneNames: ['Pacific/Fiji'],
+    place: 'Suva',
+    country: 'Fiji',
+    name: 'Passion Fruit Mojito',
+    img: passionfruitMojitoImg,
+    funFact: 'Passion fruit is plentiful in Fiji so enjoy this classic drink with a tropical twist!',
     blurb: null,
     ingredients: {},
   },

@@ -21,12 +21,12 @@ const WhyPage = () => {
         Why?
       </Typography>
       <Typography sx={{ mt: 5 }}>
-        Why did we make <strong>It's 5 O'Clock Somewhere</strong>? We honestly don't really know. It's just an idea that
-        popped into our heads. Some might say we did it for practice. Others might say we did it for fun. Who knows?!
-        The important thing is that you're here AND you found this magical page.{' '}
         <strong>It's 5 O'Clock Somewhere</strong> was built to aid <strong>YOU</strong> in choosing a beverage to enjoy,
         whatever the time of day might be! However, we strongly encourage you to{' '}
-        <strong>drink mindfully and responsibly.</strong>
+        <strong>drink mindfully and responsibly.</strong> Why did we make <strong>It's 5 O'Clock Somewhere</strong>? We
+        honestly don't really know. It's just an idea that popped into our heads. Some might say we did it for practice.
+        Others might say we did it for fun. Who knows?! The important thing is that you're here AND you found this
+        magical page.{' '}
       </Typography>
       <Typography sx={{ mt: 5 }}>
         <strong>P.S.:</strong> We are aware of some of the shortcomings of the site. We're currently looking at better
