@@ -12,6 +12,9 @@ import antiguaSmileImg from '../../assets/images/antiguaSmile.png'
 import volgaBoatmanImg from '../../assets/images/volgaBoatman.jpeg'
 import medovukhaImg from '../../assets/images/medovukha.jpg'
 import passionfruitMojitoImg from '../../assets/images/passionfruitMojito.jpg'
+import jagerbombImg from '../../assets/images/jagerbomb.png'
+import botanicalFlipImg from '../../assets/images/botanicalFlip.jpg'
+import calamansiHardLemonadeImg from '../../assets/images/calamansiHardLemonade.jpg'
 
 const drinksData = [
   {
@@ -163,7 +166,6 @@ const drinksData = [
     blurb: null,
     ingredients: {},
   },
-
   {
     zoneNames: ['Pacific/Fiji'],
     place: 'Suva',
@@ -171,6 +173,54 @@ const drinksData = [
     name: 'Passion Fruit Mojito',
     img: passionfruitMojitoImg,
     funFact: 'Passion fruit is plentiful in Fiji so enjoy this classic drink with a tropical twist!',
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneNames: [
+      'Australia/Adelaide',
+      'Australia/Brisbane',
+      'Australia/Lindeman',
+      'Australia/Broken_Hill',
+      'Australia/Queensland',
+      'Australia/South',
+      'Australia/Yancowinna',
+    ],
+    place: 'Melbourne',
+    country: 'Australia',
+    name: 'Jäger bomb',
+    img: jagerbombImg,
+    funFact:
+      'Although the most familiar chaser is red bull, other mixtures like coffee, apple juice, club soda and raspberry syrup go well with Jägermeister.',
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneNames: [
+      'Australia/Adelaide',
+      'Australia/Brisbane',
+      'Australia/Lindeman',
+      'Australia/Broken_Hill',
+      'Australia/Queensland',
+      'Australia/South',
+      'Australia/Yancowinna',
+    ],
+    place: 'Sydney',
+    country: 'Australia',
+    name: 'Botanical Flip',
+    img: botanicalFlipImg,
+    funFact:
+      'Ideal for sour cocktail fans, this drink is a textural palate fantasy with ginger, honey, pineapple and egg whites.',
+    blurb: null,
+    ingredients: {},
+  },
+  {
+    zoneNames: ['Pacific/Guam'],
+    place: 'Hagåtña',
+    country: 'Guam',
+    name: 'Calamansi Hard Lemonade',
+    img: calamansiHardLemonadeImg,
+    funFact: 'Calamansi is very prevalent in Filipino cuisine and Guam provides an excellent growing grounds for it.',
     blurb: null,
     ingredients: {},
   },
