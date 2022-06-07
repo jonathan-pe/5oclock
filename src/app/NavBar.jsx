@@ -21,7 +21,7 @@ const NavBar = () => {
       sx={{ boxShadow: 'none', justifyContent: 'center', alignItems: 'flex-end', background: 'transparent' }}
     >
       <Toolbar>
-        {location.pathname !== '/why' && (
+        {location.pathname === '/' && (
           <HiddenButton variant='text' onClick={() => history.push('/why')}>
             Why?
           </HiddenButton>

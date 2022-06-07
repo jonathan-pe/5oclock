@@ -1,10 +1,11 @@
-import { Box, Divider, Typography, Card, CardContent, CardMedia } from '@mui/material'
+import { Box, Divider, Typography, Card, CardContent, CardMedia, CardActionArea } from '@mui/material'
 import styled from 'styled-components'
 import ct from 'countries-and-timezones'
 import { useEffect, useState } from 'react'
 import moment from 'moment-timezone'
 import _ from 'lodash'
-import drinksData from './drinksData'
+import drinksData from '../../drinksData'
+import { useHistory } from 'react-router-dom'
 
 const HomeBox = styled(Box)`
   display: flex;
@@ -38,6 +39,7 @@ const DataBox = styled(Box)`
  */
 
 const Home = () => {
+  const history = useHistory()
   const initTime = new Date()
   initTime.setHours(17)
 
@@ -71,6 +73,7 @@ const Home = () => {
     setPlacesAt5(places)
   }
 
+  // update zones every second
   useEffect(() => {
     const interval = setInterval(() => {
       const time = new Date()
@@ -87,10 +90,12 @@ const Home = () => {
     }
   }, [])
 
+  // update zones on init()
   useEffect(() => {
     updateZones()
   }, [])
 
+  // choose place/drink
   useEffect(() => {
     if (placesAt5.length > 0) {
       const place = placesAt5[_.random(0, placesAt5.length - 1)]
@@ -136,23 +141,19 @@ const Home = () => {
                 Enjoy a
               </Typography>
               <Card sx={{ maxWidth: 350 }}>
-                {/* 
-              // TODO: Uncomment and use once we implement the drink's details page
-              <CardActionArea> 
-              
-              */}
-                <CardMedia component='img' height='240' image={drinkOfChoice.img} alt='green iguana' />
-                <CardContent sx={{ backgroundColor: 'white', color: 'black' }}>
-                  <Typography variant='h5' component='div' fontWeight='600'>
-                    {drinkOfChoice.name}
-                  </Typography>
-                  {drinkOfChoice.funFact && (
-                    <Typography variant='body2' sx={{ mt: 1 }}>
-                      {drinkOfChoice.funFact}
+                <CardActionArea onClick={() => history.push(`/drinks/${drinkOfChoice.drinkId}`)}>
+                  <CardMedia component='img' height='240' image={drinkOfChoice.img} alt='green iguana' />
+                  <CardContent sx={{ backgroundColor: 'white', color: 'black' }}>
+                    <Typography variant='h5' component='div' fontWeight='600'>
+                      {drinkOfChoice.name}
                     </Typography>
-                  )}
-                </CardContent>
-                {/* </CardActionArea> */}
+                    {drinkOfChoice.funFact && (
+                      <Typography variant='body2' sx={{ mt: 1 }}>
+                        {drinkOfChoice.funFact}
+                      </Typography>
+                    )}
+                  </CardContent>
+                </CardActionArea>
               </Card>
             </Box>
           </DataBox>
