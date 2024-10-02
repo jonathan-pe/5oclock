@@ -1,5 +1,5 @@
 import { AppBar, Button, Toolbar } from '@mui/material'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const HiddenButton = styled(Button)`
@@ -12,7 +12,7 @@ const HiddenButton = styled(Button)`
 `
 
 const NavBar = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
 
   return (
@@ -22,12 +22,12 @@ const NavBar = () => {
     >
       <Toolbar>
         {location.pathname === '/' && (
-          <HiddenButton variant='text' onClick={() => history.push('/why')}>
+          <HiddenButton variant='text' onClick={() => navigate('/why')}>
             Why?
           </HiddenButton>
         )}
         {location.pathname !== '/' && (
-          <Button variant='text' sx={{ color: 'white' }} onClick={() => history.push('/')}>
+          <Button variant='text' sx={{ color: 'white' }} onClick={() => navigate('/')}>
             Home
           </Button>
         )}

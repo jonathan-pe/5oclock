@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 import drinksData from '../../drinksData'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const HomeBox = styled(Box)`
   display: flex;
@@ -39,7 +39,7 @@ const DataBox = styled(Box)`
  */
 
 const Home = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const initTime = new Date()
   initTime.setHours(17)
 
@@ -141,7 +141,7 @@ const Home = () => {
                 Enjoy a
               </Typography>
               <Card sx={{ maxWidth: 350 }}>
-                <CardActionArea onClick={() => history.push(`/drinks/${drinkOfChoice.drinkId}`)}>
+                <CardActionArea onClick={() => navigate(`/drinks/${drinkOfChoice.drinkId}`)}>
                   <CardMedia component='img' height='240' image={drinkOfChoice.img} alt='green iguana' />
                   <CardContent sx={{ backgroundColor: 'white', color: 'black' }}>
                     <Typography variant='h5' component='div' fontWeight='600'>
