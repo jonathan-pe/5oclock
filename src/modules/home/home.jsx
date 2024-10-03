@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 import drinksData from '../../drinksData'
+import timezoneCityData from '../../timezoneCityData'
 import { useNavigate } from 'react-router-dom'
 
 const HomeBox = styled(Box)`
@@ -51,21 +52,19 @@ const Home = () => {
   const updateZones = () => {
     const allTimeZoneNames = moment.tz.names()
 
-    const places = []
+    let places = []
 
     allTimeZoneNames.forEach(timezone => {
       const tz = moment.tz(new Date(), timezone)
-      if (tz.hours() === 17) {
+      console.log(timezoneCityData[timezone], tz.hours())
+      if (tz.hours() === 17 && timezoneCityData[timezone] != null) {
+        console.log(timezone)
         const zoneName = tz.tz()
 
         const nameArray = zoneName.split('/')
-        const country = ct.getCountryForTimezone(zoneName)
+
         if (nameArray.length > 1 && nameArray[0] !== 'Etc') {
-          places.push({
-            zoneName,
-            place: nameArray[1].replaceAll('_', ' '),
-            country: country && country.name,
-          })
+          places = [...places, ...timezoneCityData[timezone].cities]
         }
       }
     })
