@@ -16,8 +16,52 @@ import jagerbombImg from './assets/images/jagerbomb.png'
 import botanicalFlipImg from './assets/images/botanicalFlip.jpg'
 import calamansiHardLemonadeImg from './assets/images/calamansiHardLemonade.jpg'
 import moscowMuleImg from './assets/images/moscowMule.jpg'
+import caesarImg from './assets/images/caesar.jpg'
+import maitaiRoaAeImg from './assets/images/maitaiRoaAe.png'
+import blueHawaiiImg from './assets/images/blueHawaii.png'
+import nonAlcoholicBeerImg from './assets/images/nonAlcoholicBeer.png'
 
 const drinksData = [
+  {
+    name: 'Maitai Roa Ae',
+    place: 'Papeete',
+    country: 'French Polynesia',
+    drinkId: 'maitaiRoaAe',
+    img: maitaiRoaAeImg,
+    funFact: null,
+    blurb: null,
+    ingredients: [],
+  },
+  {
+    name: 'Blue Hawaii',
+    place: 'Honolulu',
+    country: 'United States',
+    drinkId: 'blueHawaii',
+    img: blueHawaiiImg,
+    funFact: null,
+    blurb: null,
+    ingredients: [],
+  },
+  {
+    place: 'Kiritimati',
+    country: 'Kiribati',
+    name: 'Non-Alcoholic Beer',
+    drinkId: 'nonAlcoholicBeer',
+    img: nonAlcoholicBeerImg,
+    funFact: null,
+    blurb: null,
+    ingredients: [],
+  },
+  {
+    place: 'Vancouver',
+    country: 'Canada',
+    name: 'Caesar',
+    drinkId: 'caesar',
+    img: caesarImg,
+    funFact: null,
+    blurb: null,
+    ingredients: [],
+  },
   {
     zoneNames: [],
     place: 'New York',

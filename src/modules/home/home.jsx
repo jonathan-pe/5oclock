@@ -1,12 +1,11 @@
 import { Box, Divider, Typography, Card, CardContent, CardMedia, CardActionArea } from '@mui/material'
 import styled from 'styled-components'
-import ct from 'countries-and-timezones'
 import { useEffect, useState } from 'react'
 import moment from 'moment-timezone'
-import _ from 'lodash'
 import drinksData from '../../drinksData'
 import timezoneCityData from '../../timezoneCityData'
 import { useNavigate } from 'react-router-dom'
+import citiesToDrinksMap from '../../citiesToDrinksMap'
 
 const HomeBox = styled(Box)`
   display: flex;
@@ -27,38 +26,52 @@ const DataBox = styled(Box)`
   align-items: center;
 `
 
-/**
- * TODO: moment.js (and perhaps moment-timezone) has gone into legacy mode
- * so we might have to redo calculations to determine when it's 5pm in certain
- * timezones. I've already pre-emptively added /lib/isDST.js but might have to
- * eventually transition into calculating local times using UTC offsets
- *
- * We still need to find better ways to really programmatically drill down into
- * specific countries/cities that exist within these time zones. Best way is probably
- * just to hardcode them like we're doing now.
- *
- */
-
 const Home = () => {
   const navigate = useNavigate()
   const initTime = new Date()
   initTime.setHours(17)
 
   const [fiveTime, setFiveTime] = useState(initTime)
-  const [placesAt5, setPlacesAt5] = useState([])
+  const [timezonesAt5, setTimeZonesAt5] = useState([])
   const [placeOfChoice, setPlaceOfChoice] = useState()
-  const [drinkOfChoice, setDrinkOfChoice] = useState()
+  const [drink, setDrink] = useState()
 
-  const updateZones = () => {
+  const transformDrinkData = drink => {
+    return {
+      drinkId: drink.idDrink,
+      img: drink.strDrinkThumb,
+      name: drink.strDrink,
+      ingredients: [
+        drink.strIngredient1,
+        drink.strIngredient2,
+        drink.strIngredient3,
+        drink.strIngredient4,
+        drink.strIngredient5,
+        drink.strIngredient6,
+        drink.strIngredient7,
+        drink.strIngredient8,
+        drink.strIngredient9,
+        drink.strIngredient10,
+        drink.strIngredient11,
+        drink.strIngredient12,
+        drink.strIngredient13,
+        drink.strIngredient14,
+        drink.strIngredient15,
+      ],
+      instructions: drink.strInstructions,
+    }
+  }
+
+  const findTimeZonesForFiveOClock = () => {
     const allTimeZoneNames = moment.tz.names()
 
     let places = []
 
     allTimeZoneNames.forEach(timezone => {
       const tz = moment.tz(new Date(), timezone)
-      console.log(timezoneCityData[timezone], tz.hours())
+      console.log(tz.hours() === 17)
+
       if (tz.hours() === 17 && timezoneCityData[timezone] != null) {
-        console.log(timezone)
         const zoneName = tz.tz()
 
         const nameArray = zoneName.split('/')
@@ -69,7 +82,7 @@ const Home = () => {
       }
     })
 
-    setPlacesAt5(places)
+    setTimeZonesAt5(places)
   }
 
   // update zones every second
@@ -79,7 +92,7 @@ const Home = () => {
       time.setHours(17)
 
       if (time.getMinutes() === 0 && time.getSeconds() === 0) {
-        updateZones()
+        findTimeZonesForFiveOClock()
       }
       setFiveTime(time)
     }, 900) // wasn't always updating the time every second when set at 1000
@@ -89,23 +102,43 @@ const Home = () => {
     }
   }, [])
 
-  // update zones on init()
   useEffect(() => {
-    updateZones()
+    findTimeZonesForFiveOClock()
   }, [])
 
-  // choose place/drink
+  // query a drink from a random timezone
   useEffect(() => {
-    if (placesAt5.length > 0) {
-      const place = placesAt5[_.random(0, placesAt5.length - 1)]
-      const drinks = drinksData.filter(drink => drink.zoneNames.includes(place.zoneName))
-      // helps with creating new drink data for zones
-      console.log(place.zoneName)
-      console.log(placesAt5)
-      drinks.length > 0 ? setDrinkOfChoice(drinks[_.random(0, drinks.length - 1)]) : setDrinkOfChoice(null)
-      setPlaceOfChoice(place)
+    // Fetch drink suggestions
+    const getDrinkSuggestion = async place => {
+      const drink = citiesToDrinksMap[place]
+      try {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
+        const responseJson = await response.json()
+
+        // If no drinks are found, grab a drink from hardcoded drink data
+        if (!responseJson.drinks || responseJson.drinks.length === 0) {
+          const fallbackDrink = drinksData.find(d => d.name.toLowerCase() === drink.toLowerCase())
+          setDrink(fallbackDrink)
+          return
+        }
+
+        const randomIndex = Math.floor(Math.random() * responseJson.drinks.length)
+        setDrink(transformDrinkData(responseJson.drinks[randomIndex]))
+      } catch (error) {
+        const fallbackDrink = drinksData.find(d => d.name.toLowerCase() === drink.toLowerCase())
+        setDrink(fallbackDrink)
+        console.error('Error fetching drink', error)
+      }
     }
-  }, [placesAt5])
+
+    if (timezonesAt5.length > 0) {
+      const randomIndex = Math.floor(Math.random() * timezonesAt5.length)
+      const randomCity = timezonesAt5[randomIndex]
+
+      setPlaceOfChoice(randomCity)
+      getDrinkSuggestion(randomCity)
+    }
+  }, [timezonesAt5])
 
   return (
     <HomeBox>
@@ -119,19 +152,15 @@ const Home = () => {
             {fiveTime.toLocaleTimeString()}
           </Typography>{' '}
           in{' '}
-          {drinkOfChoice ? (
+          {
             <Typography component='span' variant='h5' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
-              {drinkOfChoice.place}, {drinkOfChoice.country}
+              {placeOfChoice}
             </Typography>
-          ) : (
-            <Typography component='span' variant='h5' sx={{ ml: 1, mr: 1, fontWeight: '600', color: 'text.primary' }}>
-              {placeOfChoice.place}, {placeOfChoice.country}
-            </Typography>
-          )}
+          }
         </Typography>
       )}
 
-      {drinkOfChoice && (
+      {drink && (
         <>
           <Divider sx={{ width: '80%' }} />
           <DataBox>
@@ -140,15 +169,17 @@ const Home = () => {
                 Enjoy a
               </Typography>
               <Card sx={{ maxWidth: 350 }}>
-                <CardActionArea onClick={() => navigate(`/drinks/${drinkOfChoice.drinkId}`)}>
-                  <CardMedia component='img' height='240' image={drinkOfChoice.img} alt='green iguana' />
+                <CardActionArea onClick={() => navigate(`/drinks/${drink.drinkId}`)}>
+                  {drink.img && (
+                    <CardMedia component='img' height='240' image={drink.img} alt={`image of a ${drink.name}`} />
+                  )}
                   <CardContent sx={{ backgroundColor: 'white', color: 'black' }}>
                     <Typography variant='h5' component='div' fontWeight='600'>
-                      {drinkOfChoice.name}
+                      {drink.name}
                     </Typography>
-                    {drinkOfChoice.funFact && (
+                    {drink.funFact && (
                       <Typography variant='body2' sx={{ mt: 1 }}>
-                        {drinkOfChoice.funFact}
+                        {drink.funFact}
                       </Typography>
                     )}
                   </CardContent>
